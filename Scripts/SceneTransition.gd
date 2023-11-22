@@ -2,14 +2,14 @@ extends CanvasLayer
 
 onready var sceneManager = get_node("/root/Main/SceneManager")
 
-func TransitionBlack():
+func TransitionBlack(nextScene):
 	$AnimationPlayer.play("DissolveBlack")
 	yield($AnimationPlayer, "animation_finished")
-	sceneManager.StartLevel()
+	sceneManager.StartLevel(nextScene)
 	$AnimationPlayer.play_backwards("DissolveBlack")
 
-func TransitionWhite():
+func TransitionWhite(nextScene):
 	$AnimationPlayer.play("DissolveWhite")
 	yield($AnimationPlayer, "animation_finished")
-	sceneManager.StartLevel()
+	sceneManager.StartLevel(nextScene)
 	$AnimationPlayer.play_backwards("DissolveWhite")
