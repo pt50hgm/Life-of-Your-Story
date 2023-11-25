@@ -1,0 +1,103 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Sprites/Rect.png" type="Texture" id=1]
+[ext_resource path="res://smallText.tres" type="Theme" id=2]
+[ext_resource path="res://mediumText.tres" type="Theme" id=3]
+[ext_resource path="res://Scripts/PlainText.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Text Manager.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Interactive Image.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Scene.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/book.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 100, 100 )
+
+[node name="Scene" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 19.2, 10.8 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Text Manager" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Plain Text" type="Node2D" parent="Text Manager"]
+position = Vector2( 960, 180 )
+script = ExtResource( 4 )
+readTime = 6
+thisFadeDuration = 1.0
+
+[node name="Text" type="Label" parent="Text Manager/Plain Text"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -810.0
+margin_top = -117.5
+margin_right = 810.0
+margin_bottom = 117.5
+theme = ExtResource( 2 )
+text = "I was surprised when I received something other than text. It appeared to be a language of some sort."
+valign = 1
+autowrap = true
+
+[node name="Plain Text3" type="Node2D" parent="Text Manager"]
+position = Vector2( 960, 440 )
+script = ExtResource( 4 )
+readTime = 6
+thisFadeDuration = 1.0
+
+[node name="Text" type="Label" parent="Text Manager/Plain Text3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -810.0
+margin_top = -117.5
+margin_right = 810.0
+margin_bottom = 117.5
+theme = ExtResource( 2 )
+text = "I could describe it in terms of words, but there was something fundamentally different about it."
+valign = 1
+autowrap = true
+
+[node name="Plain Text2" type="Node2D" parent="Text Manager"]
+position = Vector2( 960, 620 )
+script = ExtResource( 4 )
+readTime = 2
+thisFadeDuration = 0.5
+
+[node name="Text" type="Label" parent="Text Manager/Plain Text2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -548.5
+margin_top = -102.5
+margin_right = 548.5
+margin_bottom = 102.5
+theme = ExtResource( 3 )
+text = "What did you show me?"
+align = 1
+valign = 1
+
+[node name="Interactive Image" type="Node2D" parent="Text Manager"]
+position = Vector2( 960, 850 )
+script = ExtResource( 6 )
+readTime = 1
+thisFadeDuration = 1.0
+nextScene = "res://Scenes/Game Scenes/Act1Scene6.tscn"
+
+[node name="Area2D" type="Area2D" parent="Text Manager/Interactive Image"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Text Manager/Interactive Image/Area2D"]
+shape = SubResource( 1 )
+
+[node name="Image" type="Sprite" parent="Text Manager/Interactive Image"]
+texture = ExtResource( 8 )
+
+[connection signal="mouse_entered" from="Text Manager/Interactive Image/Area2D" to="Text Manager/Interactive Image" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Text Manager/Interactive Image/Area2D" to="Text Manager/Interactive Image" method="_on_Area2D_mouse_exited"]

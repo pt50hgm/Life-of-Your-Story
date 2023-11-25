@@ -1,8 +1,9 @@
 extends Node2D
 
 onready var textList = get_children()
+export var startTimer : float
 var textIndex = 0
-var timer = 2
+var timer = 0
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -10,7 +11,7 @@ var timer = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	timer = startTimer
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

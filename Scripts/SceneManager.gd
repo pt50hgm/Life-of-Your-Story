@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: MIT
-
 extends Node
 
 var isTransitioning = false
@@ -18,7 +16,7 @@ func _process(delta):
 # case of a reset, or the next one if the player finishes the current one.
 func StartLevel(nextScene):
 	self.remove_child($Scene)
-	self.add_child(nextScene.instance())
+	self.add_child(load(nextScene).instance())
 	isTransitioning = false
 
 func start_next_scene(nextScene):

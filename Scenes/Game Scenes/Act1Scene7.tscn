@@ -1,0 +1,218 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Sprites/Rect.png" type="Texture" id=1]
+[ext_resource path="res://mediumText.tres" type="Theme" id=3]
+[ext_resource path="res://Scripts/PlainText.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Text Manager.gd" type="Script" id=5]
+[ext_resource path="res://titleText.tres" type="Theme" id=6]
+[ext_resource path="res://Scripts/Scene.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/BlurManager.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/TextToImage.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/TextToImageManager.gd" type="Script" id=10]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 100, 100 )
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+
+uniform float amount: hint_range(0.0, 8.0);
+
+void fragment() {
+	COLOR.rgb = textureLod(SCREEN_TEXTURE, SCREEN_UV, amount).rgb;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 4 )
+shader_param/amount = 0.0
+
+[node name="Scene" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 19.2, 10.8 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Text Manager" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Plain Text" type="Node2D" parent="Text Manager"]
+position = Vector2( 960, 200 )
+script = ExtResource( 4 )
+
+[node name="Text" type="Label" parent="Text Manager/Plain Text"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -750.0
+margin_top = -177.0
+margin_right = 750.0
+margin_bottom = 177.0
+theme = ExtResource( 3 )
+text = "When I got home, things will start to change."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="TextToImageManager" type="Node2D" parent="."]
+script = ExtResource( 10 )
+nextScene = "res://Scenes/Game Scenes/Act1Scene8.tscn"
+
+[node name="TextToImage" type="Node2D" parent="TextToImageManager"]
+position = Vector2( 960, 500 )
+script = ExtResource( 9 )
+imagePath = "res://Sprites/bowl.png"
+colour = Color( 0.6, 0.282353, 0.184314, 1 )
+
+[node name="Text" type="Label" parent="TextToImageManager/TextToImage"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -102.5
+margin_right = 250.0
+margin_bottom = 102.5
+theme = ExtResource( 6 )
+text = "Bowl"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Image" type="Sprite" parent="TextToImageManager/TextToImage"]
+position = Vector2( 0, 50 )
+
+[node name="Area2D" type="Area2D" parent="TextToImageManager/TextToImage"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextToImageManager/TextToImage/Area2D"]
+shape = SubResource( 3 )
+
+[node name="BlurManager" type="Node" parent="TextToImageManager/TextToImage"]
+script = ExtResource( 8 )
+blurMode = 2
+
+[node name="Blur Filter" type="TextureRect" parent="TextToImageManager/TextToImage/BlurManager"]
+material = SubResource( 2 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -888.0
+margin_top = -200.0
+margin_right = 896.0
+margin_bottom = 485.0
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 1 )
+expand = true
+
+[node name="TextToImage3" type="Node2D" parent="TextToImageManager"]
+position = Vector2( 600, 760 )
+script = ExtResource( 9 )
+imagePath = "res://Sprites/table.png"
+colour = Color( 0.4, 0.227451, 0.156863, 1 )
+
+[node name="Text" type="Label" parent="TextToImageManager/TextToImage3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -500.0
+margin_top = -205.0
+rect_scale = Vector2( 2, 2 )
+theme = ExtResource( 6 )
+text = "Table"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Image" type="Sprite" parent="TextToImageManager/TextToImage3"]
+position = Vector2( 0, 50 )
+
+[node name="Area2D" type="Area2D" parent="TextToImageManager/TextToImage3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextToImageManager/TextToImage3/Area2D"]
+shape = SubResource( 3 )
+
+[node name="BlurManager" type="Node" parent="TextToImageManager/TextToImage3"]
+script = ExtResource( 8 )
+blurMode = 2
+
+[node name="Blur Filter" type="TextureRect" parent="TextToImageManager/TextToImage3/BlurManager"]
+material = SubResource( 2 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -856.0
+margin_top = -176.0
+margin_right = 796.0
+margin_bottom = 469.0
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 1 )
+expand = true
+
+[node name="TextToImage2" type="Node2D" parent="TextToImageManager"]
+position = Vector2( 1560, 700 )
+rotation = 1.5708
+script = ExtResource( 9 )
+imagePath = "res://Sprites/daughter.png"
+colour = Color( 1, 0.639216, 0.694118, 1 )
+
+[node name="Text" type="Label" parent="TextToImageManager/TextToImage2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -280.0
+margin_top = -102.5
+margin_right = 420.0
+margin_bottom = 102.5
+rect_scale = Vector2( 0.8, 1 )
+theme = ExtResource( 6 )
+text = "Daughter"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Image" type="Sprite" parent="TextToImageManager/TextToImage2"]
+rotation = -1.5708
+
+[node name="Area2D" type="Area2D" parent="TextToImageManager/TextToImage2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextToImageManager/TextToImage2/Area2D"]
+shape = SubResource( 3 )
+
+[node name="BlurManager" type="Node" parent="TextToImageManager/TextToImage2"]
+script = ExtResource( 8 )
+blurMode = 2
+
+[node name="Blur Filter" type="TextureRect" parent="TextToImageManager/TextToImage2/BlurManager"]
+material = SubResource( 2 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -876.0
+margin_top = -208.0
+margin_right = 836.0
+margin_bottom = 525.0
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 1 )
+expand = true
+
+[connection signal="mouse_entered" from="TextToImageManager/TextToImage/Area2D" to="TextToImageManager/TextToImage" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="TextToImageManager/TextToImage/Area2D" to="TextToImageManager/TextToImage" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="TextToImageManager/TextToImage3/Area2D" to="TextToImageManager/TextToImage3" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="TextToImageManager/TextToImage3/Area2D" to="TextToImageManager/TextToImage3" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="TextToImageManager/TextToImage2/Area2D" to="TextToImageManager/TextToImage2" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="TextToImageManager/TextToImage2/Area2D" to="TextToImageManager/TextToImage2" method="_on_Area2D_mouse_exited"]

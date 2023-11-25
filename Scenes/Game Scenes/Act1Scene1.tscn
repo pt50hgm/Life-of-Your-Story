@@ -1,0 +1,125 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Sprites/Rect.png" type="Texture" id=1]
+[ext_resource path="res://blur.shader" type="Shader" id=2]
+[ext_resource path="res://mediumText.tres" type="Theme" id=3]
+[ext_resource path="res://Scripts/PlainText.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Text Manager.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/InteractiveText.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Scene.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/BlurManager.gd" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1, 1 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/amount = 0.0
+
+[node name="Scene" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 19.2, 10.8 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Text Manager" type="Node2D" parent="."]
+script = ExtResource( 5 )
+startTimer = 1.0
+
+[node name="Plain Text" type="Node2D" parent="Text Manager"]
+position = Vector2( 960, 400 )
+script = ExtResource( 4 )
+readTime = 4
+thisFadeDuration = 0.5
+
+[node name="Text" type="Label" parent="Text Manager/Plain Text"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -548.5
+margin_top = -102.5
+margin_right = 548.5
+margin_bottom = 102.5
+theme = ExtResource( 3 )
+text = "...can you understand me?"
+align = 1
+valign = 1
+
+[node name="Interactive Text" type="Node2D" parent="Text Manager"]
+position = Vector2( 760, 600 )
+script = ExtResource( 6 )
+thisFadeDuration = 2.0
+nextScene = "res://Scenes/Game Scenes/Act1Scene2.tscn"
+
+[node name="Area2D" type="Area2D" parent="Text Manager/Interactive Text"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Text Manager/Interactive Text/Area2D"]
+shape = SubResource( 1 )
+
+[node name="Text" type="Label" parent="Text Manager/Interactive Text"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -204.0
+margin_top = -102.5
+margin_right = 204.0
+margin_bottom = 102.5
+theme = ExtResource( 3 )
+text = "Yes"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Interactive Text2" type="Node2D" parent="Text Manager"]
+position = Vector2( 1160, 600 )
+script = ExtResource( 6 )
+thisFadeDuration = 2.0
+nextScene = "res://Scenes/Game Scenes/Act1Scene2.tscn"
+
+[node name="Area2D" type="Area2D" parent="Text Manager/Interactive Text2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Text Manager/Interactive Text2/Area2D"]
+shape = SubResource( 1 )
+
+[node name="Text" type="Label" parent="Text Manager/Interactive Text2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -204.0
+margin_top = -102.5
+margin_right = 204.0
+margin_bottom = 102.5
+theme = ExtResource( 3 )
+text = "No"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="BlurManager" type="Node" parent="."]
+script = ExtResource( 8 )
+blurMode = 1
+
+[node name="Blur Filter" type="TextureRect" parent="BlurManager"]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 2
+size_flags_vertical = 2
+texture = ExtResource( 1 )
+expand = true
+
+[connection signal="mouse_entered" from="Text Manager/Interactive Text/Area2D" to="Text Manager/Interactive Text" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Text Manager/Interactive Text/Area2D" to="Text Manager/Interactive Text" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="Text Manager/Interactive Text2/Area2D" to="Text Manager/Interactive Text2" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Text Manager/Interactive Text2/Area2D" to="Text Manager/Interactive Text2" method="_on_Area2D_mouse_exited"]
