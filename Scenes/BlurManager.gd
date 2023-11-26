@@ -27,6 +27,10 @@ func _process(delta):
 				blurVal = 5
 				blur = true
 				blurStart = true
+		elif blurMode == 3:
+			blurVal = 1.5
+			blur = true
+			blurStart = true
 	
 	if blur:
 		if blurMode == 1:

@@ -38,7 +38,7 @@ centered = false
 
 [node name="Text Manager" type="Node2D" parent="."]
 script = ExtResource( 5 )
-startTimer = 1.0
+startTimer = 2.0
 
 [node name="Plain Text" type="Node2D" parent="Text Manager"]
 position = Vector2( 960, 200 )
@@ -64,6 +64,7 @@ autowrap = true
 [node name="TextToImageManager" type="Node2D" parent="."]
 script = ExtResource( 10 )
 nextScene = "res://Scenes/Game Scenes/Act2Text.tscn"
+fadeDuration = 1.0
 
 [node name="TextToImage3" type="Node2D" parent="TextToImageManager"]
 position = Vector2( 960, 680 )

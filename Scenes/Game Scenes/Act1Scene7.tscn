@@ -42,6 +42,7 @@ script = ExtResource( 5 )
 [node name="Plain Text" type="Node2D" parent="Text Manager"]
 position = Vector2( 960, 200 )
 script = ExtResource( 4 )
+thisFadeDuration = 1.0
 
 [node name="Text" type="Label" parent="Text Manager/Plain Text"]
 anchor_left = 0.5
@@ -61,6 +62,8 @@ autowrap = true
 [node name="TextToImageManager" type="Node2D" parent="."]
 script = ExtResource( 10 )
 nextScene = "res://Scenes/Game Scenes/Act1Scene8.tscn"
+fadeDuration = 1.0
+delay = 2.0
 
 [node name="TextToImage" type="Node2D" parent="TextToImageManager"]
 position = Vector2( 960, 500 )

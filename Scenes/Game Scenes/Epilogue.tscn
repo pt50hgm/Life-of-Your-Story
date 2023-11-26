@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/Rect.png" type="Texture" id=1]
-[ext_resource path="res://titleText.tres" type="Theme" id=2]
+[ext_resource path="res://italics.tres" type="Theme" id=2]
 [ext_resource path="res://mediumText.tres" type="Theme" id=3]
 [ext_resource path="res://Scripts/PlainText.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Text Manager.gd" type="Script" id=5]
@@ -22,33 +22,82 @@ centered = false
 
 [node name="Text Manager" type="Node2D" parent="."]
 script = ExtResource( 5 )
+startTimer = 1.0
+
+[node name="Plain Text2" type="Node2D" parent="Text Manager"]
+position = Vector2( 960, 480 )
+script = ExtResource( 4 )
+readTime = 6
+thisFadeDuration = 0.5
+
+[node name="Text" type="Label" parent="Text Manager/Plain Text2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -910.0
+margin_top = -415.0
+margin_right = 910.0
+margin_bottom = -299.0
+theme = ExtResource( 2 )
+text = "But the player could not respond to Louise because they had also read the Book of Ages."
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Plain Text" type="Node2D" parent="Text Manager"]
-position = Vector2( 960, 300 )
+position = Vector2( 960, 440 )
 script = ExtResource( 4 )
-readTime = 2
+readTime = 6
+thisFadeDuration = 0.5
 
 [node name="Text" type="Label" parent="Text Manager/Plain Text"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -649.0
-margin_top = -102.5
-margin_right = 649.0
-margin_bottom = 102.5
+margin_left = -910.0
+margin_top = -415.0
+margin_right = 910.0
+margin_bottom = 415.0
 theme = ExtResource( 2 )
-text = "Hello Testing"
-align = 1
+text = "In the end, the player's choices did not matter because it was her life and her story."
 valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Plain Text3" type="Node2D" parent="Text Manager"]
+position = Vector2( 960, 760 )
+script = ExtResource( 4 )
+readTime = 6
+thisFadeDuration = 0.5
+
+[node name="Text" type="Label" parent="Text Manager/Plain Text3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -910.0
+margin_top = -415.0
+margin_right = 910.0
+margin_bottom = 415.0
+theme = ExtResource( 2 )
+text = "And as the player pondered what all of this meant, they came to the realization that the “game” would end now."
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="Interactive Text" type="Node2D" parent="Text Manager"]
-position = Vector2( 960, 540 )
+position = Vector2( 1450, 950 )
 script = ExtResource( 6 )
-readTime = 6
+thisFadeDuration = 2.0
+nextScene = "res://Scenes/Game Scenes/TitleScreen.tscn"
 
 [node name="Area2D" type="Area2D" parent="Text Manager/Interactive Text"]
 
@@ -60,12 +109,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -204.0
+margin_left = -416.5
 margin_top = -102.5
-margin_right = 204.0
+margin_right = 416.5
 margin_bottom = 102.5
 theme = ExtResource( 3 )
-text = "Begin"
+text = "And so it did."
 align = 1
 valign = 1
 __meta__ = {

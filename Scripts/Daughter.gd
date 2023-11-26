@@ -1,6 +1,5 @@
-extends Node2D
+extends AnimatedSprite
 
-var canWalk = true
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,5 +12,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	print(canWalk)
+#func _process(delta):
+#	pass
+
+
+func _on_TriggerArea2D_area_entered(area):
+	animation = "Injury"

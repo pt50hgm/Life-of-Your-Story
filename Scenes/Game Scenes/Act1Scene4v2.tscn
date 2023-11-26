@@ -26,6 +26,7 @@ centered = false
 
 [node name="Text Manager" type="Node2D" parent="."]
 script = ExtResource( 5 )
+startTimer = 1.0
 
 [node name="Plain Text2" type="Node2D" parent="Text Manager"]
 position = Vector2( 960, 400 )

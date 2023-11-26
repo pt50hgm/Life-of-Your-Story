@@ -4,6 +4,7 @@ export var readTime : int
 export var thisFadeDuration : float
 export var nextScene : String
 
+var released = false
 var isHovering = false
 var colourVal = 0
 
@@ -20,6 +21,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if not Input.is_mouse_button_pressed(1):
+		released = true
+	else:
+		released = false
+		
 	if fadeIn or isReady:
 		if isHovering:
 			colourVal += (1 - colourVal)/0.3 * delta
@@ -29,7 +35,7 @@ func _process(delta):
 
 func _input(event):
 	if fadeIn or isReady:
-		if isHovering and Input.is_mouse_button_pressed(BUTTON_LEFT):
+		if isHovering and Input.is_mouse_button_pressed(BUTTON_LEFT) and released:
 			sceneManager.start_next_scene(nextScene)
 
 func _on_Area2D_mouse_entered():

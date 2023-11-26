@@ -22,6 +22,7 @@ centered = false
 
 [node name="Text Manager" type="Node2D" parent="."]
 script = ExtResource( 5 )
+startTimer = 1.0
 
 [node name="Plain Text" type="Node2D" parent="Text Manager"]
 position = Vector2( 960, 250 )
@@ -68,7 +69,7 @@ position = Vector2( 660, 700 )
 script = ExtResource( 6 )
 readTime = 1
 thisFadeDuration = 1.0
-nextScene = "res://Scenes/Game Scenes/Act1Scene3.tscn"
+nextScene = "res://Scenes/Game Scenes/Act1Scene4.tscn"
 
 [node name="Area2D" type="Area2D" parent="Text Manager/Interactive Text"]
 
@@ -97,7 +98,7 @@ position = Vector2( 1160, 700 )
 script = ExtResource( 6 )
 readTime = 1
 thisFadeDuration = 1.0
-nextScene = "res://Scenes/Game Scenes/Act1Scene3.tscn"
+nextScene = "res://Scenes/Game Scenes/Act1Scene4.tscn"
 
 [node name="Area2D" type="Area2D" parent="Text Manager/Interactive Text2"]
 

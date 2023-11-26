@@ -50,7 +50,7 @@ __meta__ = {
 [node name="Plain Text" type="Node2D" parent="Text Manager"]
 position = Vector2( 960, 480 )
 script = ExtResource( 4 )
-readTime = 6
+readTime = 7
 thisFadeDuration = 0.5
 
 [node name="Text" type="Label" parent="Text Manager/Plain Text"]
@@ -93,7 +93,7 @@ margin_top = -102.5
 margin_right = 416.5
 margin_bottom = 102.5
 theme = ExtResource( 3 )
-text = "Click Here To Begin"
+text = "Click here to begin"
 align = 1
 valign = 1
 __meta__ = {

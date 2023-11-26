@@ -21,7 +21,7 @@ script = ExtResource( 5 )
 [node name="Plain Text" type="Node2D" parent="Text Manager"]
 position = Vector2( 960, 440 )
 script = ExtResource( 4 )
-readTime = 5
+readTime = 6
 thisFadeDuration = 1.0
 nextScene = "res://Scenes/Game Scenes/Prologue.tscn"
 
@@ -42,7 +42,7 @@ autowrap = true
 [node name="Plain Text2" type="Node2D" parent="Text Manager"]
 position = Vector2( 960, 800 )
 script = ExtResource( 4 )
-thisFadeDuration = 2.0
+thisFadeDuration = 2.5
 nextScene = "res://Scenes/Game Scenes/Act1Scene7.tscn"
 changeScenes = true
 

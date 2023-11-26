@@ -3,6 +3,7 @@ extends Node2D
 export var imagePath : String
 export var colour : Color
 
+var released = false
 var isHovering = false
 var colourVal = 0
 var change = false
@@ -18,17 +19,24 @@ func _ready():
 	var textSize = text.rect_size
 	area2d.get_node("CollisionShape2D").shape.extents = textSize/2
 
+func is_valid():
+	return isHovering and not textToImageManager.isChanging and textToImageManager.fadeIn and not change
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if isHovering and not textToImageManager.isChanging or change:
+	if not Input.is_mouse_button_pressed(1):
+		released = true
+	else:
+		released = false
+	
+	if is_valid() or change:
 		colourVal += (1 - colourVal)/0.3 * delta
 	else:
 		colourVal += (0 - colourVal)/0.3 * delta
 	text.set("custom_colors/font_color", Color(colour.r + (1-colour.r)*(1-colourVal), colour.g + (1-colour.g)*(1-colourVal), colour.b + (1-colour.b)*(1-colourVal)))
 		
 func _input(event):
-	if isHovering and not textToImageManager.isChanging and Input.is_mouse_button_pressed(BUTTON_LEFT):
+	if is_valid() and Input.is_mouse_button_pressed(BUTTON_LEFT) and released:
 		blurManager.start_blur()
 		change = true
 		textToImageManager.isChanging = true

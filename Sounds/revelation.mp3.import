@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/revelation.mp3-99db5e1534b9ffbab9934e548ddb9309.mp3str"
+
+[deps]
+
+source_file="res://Sounds/revelation.mp3"
+dest_files=[ "res://.import/revelation.mp3-99db5e1534b9ffbab9934e548ddb9309.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
